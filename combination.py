@@ -1,0 +1,21 @@
+def combinationsum(candidates, target):
+        def generate(ind,subset,ans,candidates,target):
+            if(target==0):
+                ans.append(subset.copy())
+                return
+            if(target<0):
+                return
+            if(ind == len(candidates)):
+                return
+            subset.append(candidates[ind])
+            generate(ind,subset,ans,candidates,target-candidates[ind])
+            subset.pop()
+            generate(ind+1,subset,ans,candidates,target)
+        ind = 0
+        ans = []
+        subset = []
+        generate(ind,subset,ans,candidates,target)
+        return ans
+candidates = list(map(int,input().split()))
+target = int(input())
+print(combinationsum(candidates,target))
